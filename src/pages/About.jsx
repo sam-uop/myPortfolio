@@ -1,5 +1,7 @@
 import React from 'react';
+import Tilt from 'react-parallax-tilt';
 import { resumeData } from '../data';
+import profileImage from '../assets/profile.png';
 
 const About = () => {
   return (
@@ -33,11 +35,14 @@ const About = () => {
           </div>
         </div>
         
-        {/* Placeholder for optional image */}
         <div style={styles.imageColumn}>
-           <div style={styles.placeholderImage}>
-             <span>Photo Placeholder</span>
-           </div>
+           <Tilt tiltReverse={true} style={styles.tiltWrapper}>
+             <img 
+               src={profileImage} 
+               alt="Profile" 
+               style={styles.profileImage} 
+             />
+           </Tilt>
         </div>
       </div>
     </div>
@@ -61,7 +66,7 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
     gap: '4rem',
-    alignItems: 'start',
+    alignItems: 'center', // Changed to center for better alignment with image
   },
   textColumn: {
     display: 'flex',
@@ -97,18 +102,20 @@ const styles = {
   imageColumn: {
     display: 'flex',
     justifyContent: 'center',
+    perspective: '1000px', // Optional: adds depth to the 3D effect
   },
-  placeholderImage: {
+  tiltWrapper: {
     width: '100%',
     maxWidth: '400px',
-    aspectRatio: '1/1',
-    backgroundColor: 'var(--bg-secondary)',
     borderRadius: '20px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: 'var(--text-secondary)',
-    border: '2px dashed var(--text-secondary)',
+    overflow: 'hidden', // Ensures image stays within rounded corners
+    boxShadow: '0 20px 30px -10px rgba(0, 0, 0, 0.3)', // Added shadow for depth
+  },
+  profileImage: {
+    width: '100%',
+    height: 'auto',
+    display: 'block',
+    borderRadius: '20px', // Ensure image itself is rounded
   },
 };
 
